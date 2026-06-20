@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartConcierge AI - Personal Planning & Productivity Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Main Grid Layout -->
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-10V2z"/><path d="M12 12L2.7 12"/><path d="M12 12l5.3 5.3"/><path d="M12 12l-3-9"/></svg>
+        </div>
+        <span class="logo-text">SmartConcierge</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="planner">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Planner</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="tasks">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Tasks</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="finances">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Finances</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="habits">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20a6 6 0 0 0-12 0"/><path d="M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M12 10v10"/><path d="m17 14-5-2-5 2"/></svg>
+          <span>Habits</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="fitness">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18.5 5.5 1.5-1.5"/><path d="m5.5 18.5-1.5 1.5"/><path d="M8.5 2c.7 0 1.2.6 1.2 1.2v1.6c0 .7-.5 1.2-1.2 1.2H6.9c-.7 0-1.2-.5-1.2-1.2V3.2c0-.7.5-1.2 1.2-1.2h1.6zm10.2 13.6c.7 0 1.2.6 1.2 1.2v1.6c0 .7-.5 1.2-1.2 1.2H17.1c-.7 0-1.2-.5-1.2-1.2v-1.6c0-.7.5-1.2 1.2-1.2h1.6z"/></svg>
+          <span>Fitness</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="notes">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Notes</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="vault">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Privacy Vault</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="security-badge locked" id="vault-status-indicator">
+          <span class="dot"></span>
+          <span class="text">Vault Encrypted</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="page-title-area">
+          <h1 id="current-view-title">Dashboard</h1>
+          <p id="current-view-subtitle">Welcome back. Here is your concierge overview.</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="time-widget">
+            <span class="time" id="widget-time">12:00 PM</span>
+            <span class="date" id="widget-date">Saturday, June 20</span>
+          </div>
+          <div class="theme-toggle" id="theme-toggle-btn">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="vault-quick-lock" id="quick-lock-btn" title="Lock Vault Now">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <div class="view-viewport">
+        
+        <!-- DASHBOARD TAB -->
+        <section class="view-panel active" id="view-dashboard">
+          <div class="dashboard-grid">
+            
+            <!-- Welcome Widget & Stats -->
+            <div class="dashboard-card welcome-card span-col-2">
+              <div class="welcome-content">
+                <h2>Hello, Planner</h2>
+                <p>Your personal assistant is active and monitoring deadlines. You have <strong id="dash-pending-tasks-count">0</strong> tasks remaining today.</p>
+                <div class="welcome-actions">
+                  <button class="btn btn-primary" onclick="app.switchTab('planner')">View Agenda</button>
+                  <button class="btn btn-secondary" onclick="document.getElementById('task-modal').classList.add('active')">Quick Task</button>
+                </div>
+              </div>
+              <div class="welcome-stats">
+                <div class="stat-bubble">
+                  <div class="val" id="dash-budget-remaining">$0</div>
+                  <div class="lbl">Budget Left</div>
+                </div>
+                <div class="stat-bubble">
+                  <div class="val" id="dash-habit-streak">0d</div>
+                  <div class="lbl">Best Streak</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather Widget Mock -->
+            <div class="dashboard-card weather-card">
+              <div class="card-header">
+                <h3>Weather Concierge</h3>
+                <span class="badge" id="weather-location">London, UK</span>
+              </div>
+              <div class="weather-body">
+                <div class="weather-temp">
+                  <span class="temp">22°C</span>
+                  <svg class="weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+                </div>
+                <p class="weather-desc">Sunny & clear today. Great day to complete your outdoor habits!</p>
+              </div>
+            </div>
+
+            <!-- Daily Goals / Agenda Summary -->
+            <div class="dashboard-card agenda-summary-card">
+              <div class="card-header">
+                <h3>Today's Agenda</h3>
+                <a href="#" onclick="app.switchTab('planner')" class="card-link">View All</a>
+              </div>
+              <div class="agenda-summary-list" id="dash-agenda-list">
+                <div class="empty-state">No meetings or events scheduled for today.</div>
+              </div>
+            </div>
+
+            <!-- Urgent Tasks -->
+            <div class="dashboard-card urgent-tasks-card">
+              <div class="card-header">
+                <h3>High Priority Tasks</h3>
+                <a href="#" onclick="app.switchTab('tasks')" class="card-link">Manage</a>
+              </div>
+              <div class="task-summary-list" id="dash-task-list">
+                <div class="empty-state">No urgent tasks. You are all caught up!</div>
+              </div>
+            </div>
+
+            <!-- Habit Progress Quick Wheel -->
+            <div class="dashboard-card habits-summary-card">
+              <div class="card-header">
+                <h3>Daily Habits</h3>
+                <a href="#" onclick="app.switchTab('habits')" class="card-link">All Habits</a>
+              </div>
+              <div class="habits-summary-list" id="dash-habits-list">
+                <div class="empty-state">No habits set up yet.</div>
+              </div>
+            </div>
+
+            <!-- Finance Progress -->
+            <div class="dashboard-card finance-summary-card span-col-2">
+              <div class="card-header">
+                <h3>Budget Utilization</h3>
+                <a href="#" onclick="app.switchTab('finances')" class="card-link">Ledger</a>
+              </div>
+              <div class="finance-progress-body">
+                <div class="chart-wrapper">
+                  <svg id="dash-finance-chart" width="100%" height="150" viewBox="0 0 400 150">
+                    <!-- Dynamic chart rendering -->
+                  </svg>
+                </div>
+                <div class="finance-metrics" id="dash-finance-metrics">
+                  <!-- Metrics will be generated here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Fitness Widget -->
+            <div class="dashboard-card fitness-summary-card">
+              <div class="card-header">
+                <h3>Wellness Metrics</h3>
+                <a href="#" onclick="app.switchTab('fitness')" class="card-link">Log</a>
+              </div>
+              <div class="fitness-summary-body">
+                <div class="wellness-row">
+                  <div class="wellness-icon water">💧</div>
+                  <div class="wellness-info">
+                    <span class="value" id="dash-water-intake">0 ml</span>
+                    <span class="label">Hydration Goal (2500ml)</span>
+                  </div>
+                </div>
+                <div class="wellness-row">
+                  <div class="wellness-icon sleep">🌙</div>
+                  <div class="wellness-info">
+                    <span class="value" id="dash-sleep-hours">0 hrs</span>
+                    <span class="label">Sleep Last Night</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- PLANNER TAB -->
+        <section class="view-panel" id="view-planner">
+          <div class="planner-layout">
+            <div class="calendar-card">
+              <div class="calendar-header-controls">
+                <button class="btn btn-icon" id="prev-month-btn">←</button>
+                <h3 id="calendar-month-year">June 2026</h3>
+                <button class="btn btn-icon" id="next-month-btn">→</button>
+              </div>
+              <div class="calendar-grid-header">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+              </div>
+              <div class="calendar-grid-days" id="calendar-days">
+                <!-- Days will be generated by planner.js -->
+              </div>
+            </div>
+            
+            <div class="agenda-timeline-card">
+              <div class="card-header">
+                <h3>Timeline Agenda</h3>
+                <button class="btn btn-primary btn-sm" id="add-event-btn">+ Event</button>
+              </div>
+              <div class="selected-date-indicator" id="selected-date-label">Today: June 20, 2026</div>
+              <div class="timeline-container" id="agenda-timeline">
+                <!-- Agenda items list -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TASKS TAB -->
+        <section class="view-panel" id="view-tasks">
+          <div class="tasks-header-bar">
+            <div class="tasks-filters">
+              <button class="btn btn-secondary btn-sm active" data-filter="all">All Tasks</button>
+              <button class="btn btn-secondary btn-sm" data-filter="High">High</button>
+              <button class="btn btn-secondary btn-sm" data-filter="Medium">Medium</button>
+              <button class="btn btn-secondary btn-sm" data-filter="Low">Low</button>
+            </div>
+            <button class="btn btn-primary" id="open-task-modal-btn">+ Add Task</button>
+          </div>
+          
+          <div class="kanban-board">
+            <!-- TO DO column -->
+            <div class="kanban-column" id="col-todo" data-status="todo">
+              <div class="column-header">
+                <h3>To Do</h3>
+                <span class="count" id="todo-count">0</span>
+              </div>
+              <div class="column-cards" id="todo-cards">
+                <!-- Cards -->
+              </div>
+            </div>
+            
+            <!-- IN PROGRESS column -->
+            <div class="kanban-column" id="col-inprogress" data-status="inprogress">
+              <div class="column-header">
+                <h3>In Progress</h3>
+                <span class="count" id="inprogress-count">0</span>
+              </div>
+              <div class="column-cards" id="inprogress-cards">
+                <!-- Cards -->
+              </div>
+            </div>
+            
+            <!-- DONE column -->
+            <div class="kanban-column" id="col-done" data-status="done">
+              <div class="column-header">
+                <h3>Completed</h3>
+                <span class="count" id="done-count">0</span>
+              </div>
+              <div class="column-cards" id="done-cards">
+                <!-- Cards -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FINANCES TAB -->
+        <section class="view-panel" id="view-finances">
+          <div class="finances-grid">
+            <!-- Financial Overview cards -->
+            <div class="finance-overview-row span-col-full">
+              <div class="finance-card income">
+                <span class="lbl">Total Income</span>
+                <span class="val" id="fin-total-income">$0.00</span>
+              </div>
+              <div class="finance-card expense">
+                <span class="lbl">Total Expenses</span>
+                <span class="val" id="fin-total-expenses">$0.00</span>
+              </div>
+              <div class="finance-card net-savings">
+                <span class="lbl">Net Savings</span>
+                <span class="val" id="fin-net-savings">$0.00</span>
+              </div>
+            </div>
+
+            <!-- Transaction Form & Budget Limits -->
+            <div class="finance-inputs-card">
+              <div class="tabs-header-mini">
+                <button class="tab-mini-btn active" id="tab-add-tx">Add Transaction</button>
+                <button class="tab-mini-btn" id="tab-set-budget">Set Budgets</button>
+              </div>
+
+              <!-- Form Add Tx -->
+              <form id="tx-form" class="finance-mini-form active">
+                <div class="form-group">
+                  <label for="tx-desc">Description</label>
+                  <input type="text" id="tx-desc" required placeholder="e.g. Grocery Store, Salary">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="tx-amount">Amount ($)</label>
+                    <input type="number" step="0.01" id="tx-amount" required placeholder="0.00">
+                  </div>
+                  <div class="form-group">
+                    <label for="tx-type">Type</label>
+                    <select id="tx-type">
+                      <option value="expense">Expense</option>
+                      <option value="income">Income</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="tx-category">Category</label>
+                  <select id="tx-category">
+                    <option value="Food">Food</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Health">Health</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Salary">Salary / Income</option>
+                    <option value="Misc">Miscellaneous</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Record Transaction</button>
+              </form>
+
+              <!-- Form Set Budgets -->
+              <form id="budget-form" class="finance-mini-form">
+                <div class="form-group">
+                  <label for="budget-cat">Category</label>
+                  <select id="budget-cat">
+                    <option value="Food">Food</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Health">Health</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Misc">Miscellaneous</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget-limit">Limit ($)</label>
+                  <input type="number" id="budget-limit" required placeholder="e.g. 500">
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block">Update Limit</button>
+              </form>
+            </div>
+
+            <!-- Budget Progress Meters -->
+            <div class="finance-budgets-card">
+              <h3>Monthly Category Budgets</h3>
+              <div class="budget-meters-list" id="budget-meters-container">
+                <!-- Budget bars -->
+              </div>
+            </div>
+
+            <!-- Transaction Ledger -->
+            <div class="finance-ledger-card span-col-2">
+              <h3>Transaction History</h3>
+              <div class="ledger-table-container">
+                <table class="ledger-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Category</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ledger-transactions-body">
+                    <!-- Transactions go here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HABITS TAB -->
+        <section class="view-panel" id="view-habits">
+          <div class="habits-layout">
+            <div class="habits-manager-card">
+              <h3>Create Habit</h3>
+              <form id="habit-form" class="habit-creator-form">
+                <div class="form-group">
+                  <label for="habit-name">Habit Name</label>
+                  <input type="text" id="habit-name" required placeholder="e.g. Drink Water, Meditate">
+                </div>
+                <div class="form-group">
+                  <label for="habit-frequency">Frequency</label>
+                  <select id="habit-frequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add Habit</button>
+              </form>
+            </div>
+
+            <div class="habits-list-card">
+              <h3>Your Habits Tracker</h3>
+              <div class="habits-container" id="habits-list-container">
+                <!-- Habit rows -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FITNESS TAB -->
+        <section class="view-panel" id="view-fitness">
+          <div class="fitness-grid">
+            <!-- Hydration Card -->
+            <div class="fitness-card-item hydration">
+              <h3>Hydration Log</h3>
+              <div class="water-glass-visual">
+                <div class="water-fill" id="water-fill-level" style="height: 0%;"></div>
+                <div class="water-level-text" id="water-level-text">0 / 2500 ml</div>
+              </div>
+              <div class="hydration-buttons">
+                <button class="btn btn-secondary btn-sm" onclick="fitness.addWater(250)">+ 250ml</button>
+                <button class="btn btn-secondary btn-sm" onclick="fitness.addWater(500)">+ 500ml</button>
+                <button class="btn btn-danger btn-sm" onclick="fitness.resetWater()">Reset</button>
+              </div>
+            </div>
+
+            <!-- Calories Card -->
+            <div class="fitness-card-item calorie-tracker">
+              <h3>Calorie Dashboard</h3>
+              <div class="calorie-meters">
+                <div class="calorie-meter-bar">
+                  <div class="label-row">
+                    <span>Consumed</span>
+                    <span id="cal-consumed-text">0 / 2000 kcal</span>
+                  </div>
+                  <div class="bar-outer">
+                    <div class="bar-inner consumed" id="cal-consumed-bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+                <div class="calorie-meter-bar">
+                  <div class="label-row">
+                    <span>Burned</span>
+                    <span id="cal-burned-text">0 / 500 kcal</span>
+                  </div>
+                  <div class="bar-outer">
+                    <div class="bar-inner burned" id="cal-burned-bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+              <form id="calorie-form" class="fitness-mini-form inline">
+                <input type="number" id="calorie-amount" placeholder="Calories (kcal)" required>
+                <select id="calorie-type">
+                  <option value="consumed">Consumed</option>
+                  <option value="burned">Burned</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Log</button>
+              </form>
+            </div>
+
+            <!-- Sleep Log -->
+            <div class="fitness-card-item sleep-tracker">
+              <h3>Sleep Tracker</h3>
+              <div class="sleep-visual">
+                <div class="moon-art">🌙</div>
+                <div class="sleep-stat" id="sleep-hours-val">0 hrs</div>
+                <div class="sleep-quality" id="sleep-quality-lbl">No sleep logged</div>
+              </div>
+              <form id="sleep-form" class="fitness-mini-form inline">
+                <input type="number" step="0.1" id="sleep-hours" placeholder="Hours" required>
+                <select id="sleep-quality">
+                  <option value="Excellent">Excellent</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair">Fair</option>
+                  <option value="Poor">Poor</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Log Sleep</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOTES TAB -->
+        <section class="view-panel" id="view-notes">
+          <div class="notes-layout">
+            <div class="notes-editor-card">
+              <h3 id="note-editor-title">New Note</h3>
+              <form id="note-form" class="note-editor-form">
+                <input type="hidden" id="note-id">
+                <div class="form-group">
+                  <label for="note-title">Title</label>
+                  <input type="text" id="note-title" required placeholder="Note title...">
+                </div>
+                <div class="form-group">
+                  <label for="note-content">Content</label>
+                  <textarea id="note-content" required placeholder="Write your notes here... You can also ask the AI Concierge to create notes for you."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="note-tags">Tags (comma separated)</label>
+                  <input type="text" id="note-tags" placeholder="personal, project, ideas">
+                </div>
+                <div class="note-editor-buttons">
+                  <button type="submit" class="btn btn-primary" id="save-note-btn">Save Note</button>
+                  <button type="button" class="btn btn-secondary" id="clear-note-btn">Clear</button>
+                </div>
+              </form>
+            </div>
+            
+            <div class="notes-list-card">
+              <div class="notes-search-bar">
+                <input type="text" id="note-search-input" placeholder="Search notes by title, tag, content...">
+              </div>
+              <div class="notes-grid-container" id="notes-grid-container">
+                <!-- Notes will populate here -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VAULT TAB -->
+        <section class="view-panel" id="view-vault">
+          <div class="vault-container">
+            <div class="vault-card security-status-panel">
+              <div class="lock-graphic" id="vault-graphic-icon">
+                🔒
+              </div>
+              <h2 id="vault-status-title">Vault is Encrypted & Locked</h2>
+              <p id="vault-status-desc">All planner data is currently stored encrypted in LocalStorage. Enter your PIN key to unlock access, export, or import data.</p>
+              
+              <div class="vault-auth-area" id="vault-auth-area">
+                <div class="form-group">
+                  <input type="password" id="vault-pin-input" placeholder="Enter Vault PIN key..." maxlength="8">
+                </div>
+                <div class="vault-auth-buttons">
+                  <button class="btn btn-primary" id="vault-unlock-btn">Unlock Vault</button>
+                  <button class="btn btn-secondary" id="vault-set-pin-btn">Set/Change PIN</button>
+                </div>
+              </div>
+
+              <div class="vault-actions-area disabled" id="vault-actions-area">
+                <div class="alert alert-success">Vault is unlocked and accessible.</div>
+                <button class="btn btn-secondary btn-block" id="vault-lock-btn">Lock Vault Now</button>
+                
+                <div class="backup-restore-block">
+                  <h3>Backup & Restore</h3>
+                  <p>Export your encrypted data vault to a JSON backup file to store offline, or restore an existing backup file.</p>
+                  <div class="backup-buttons">
+                    <button class="btn btn-success" id="vault-export-btn">Export Backup</button>
+                    <label class="btn btn-info" for="vault-import-file">Import Backup</label>
+                    <input type="file" id="vault-import-file" style="display: none;">
+                  </div>
+                </div>
+                
+                <button class="btn btn-danger btn-block" id="vault-purge-btn">Purge All Data</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- AI Concierge Assistant Sidebar Drawer -->
+    <aside class="assistant-drawer active">
+      <div class="drawer-header">
+        <div class="agent-profile">
+          <div class="agent-avatar">AI</div>
+          <div class="agent-name-status">
+            <h4>Concierge Agent</h4>
+            <span class="status-online"><span class="dot"></span>Online</span>
+          </div>
+        </div>
+        <div class="drawer-header-actions">
+          <button class="btn btn-icon active" id="agent-speech-toggle" title="Voice Response Toggle">
+            🔊
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="agent-chat-messages">
+        <div class="chat-bubble agent">
+          <p>Hello! I am your SmartConcierge AI assistant. You can speak to me or type commands directly.</p>
+          <p class="suggestions-hint">Try saying:<br>
+            • <em>"spent $15 on dinner"</em><br>
+            • <em>"add a high priority task prepare slides"</em><br>
+            • <em>"schedule meeting tomorrow at 3 PM"</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <form id="agent-chat-form">
+          <input type="text" id="agent-chat-input" placeholder="Ask or instruct me..." autocomplete="off">
+          <button type="button" class="btn btn-icon mic-btn" id="agent-mic-btn" title="Speak command">
+            🎙️
+          </button>
+          <button type="submit" class="btn btn-primary btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Universal Modals -->
+  
+  <!-- Event Modal -->
+  <div class="modal" id="event-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Create Planner Event</h3>
+        <button class="modal-close" onclick="document.getElementById('event-modal').classList.remove('active')">&times;</button>
+      </div>
+      <form id="modal-event-form">
+        <div class="form-group">
+          <label for="event-title">Title</label>
+          <input type="text" id="event-title" required placeholder="Event description...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event-date">Date</label>
+            <input type="date" id="event-date" required>
+          </div>
+          <div class="form-group">
+            <label for="event-time">Time</label>
+            <input type="time" id="event-time" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="event-category">Category</label>
+          <select id="event-category">
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Finances">Finances</option>
+            <option value="Health">Health</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save Agenda Event</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Task Modal -->
+  <div class="modal" id="task-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Create Kanban Task</h3>
+        <button class="modal-close" onclick="document.getElementById('task-modal').classList.remove('active')">&times;</button>
+      </div>
+      <form id="modal-task-form">
+        <div class="form-group">
+          <label for="m-task-title">Task Description</label>
+          <input type="text" id="m-task-title" required placeholder="What needs to be done?">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="m-task-priority">Priority</label>
+            <select id="m-task-priority">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="m-task-due">Due Date</label>
+            <input type="date" id="m-task-due">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="m-task-tag">Category / Tag</label>
+          <input type="text" id="m-task-tag" placeholder="e.g. Office, Shopping, Coding">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create Task</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/agent.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/finances.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
