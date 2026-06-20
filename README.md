@@ -48,6 +48,7 @@ SmartConcierge AI acts as a personal digital concierge that helps users:
 The platform uses Artificial Intelligence to automate routine activities and provide personalized assistance.
 
 ---
+<img width="1476" height="697" alt="image" src="https://github.com/user-attachments/assets/906572eb-ade1-4ca1-b137-de83f4e1670a" />
 
 ## Key Features
 
