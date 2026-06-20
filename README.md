@@ -32,6 +32,8 @@ This fragmented approach creates several challenges:
 SmartConcierge AI solves these problems by providing one centralized intelligent assistant.
 
 ---
+Architecture Diagram
+<img width="1440" height="1660" alt="image" src="https://github.com/user-attachments/assets/5bb29035-7bd7-4e9f-85cd-bef60810c690" />
 
 ## Solution
 
@@ -46,6 +48,9 @@ SmartConcierge AI acts as a personal digital concierge that helps users:
 - Stay productive and organized
 
 The platform uses Artificial Intelligence to automate routine activities and provide personalized assistance.
+
+SmartConcierge AI – Complete Project Flow Diagram
+<img width="1440" height="2840" alt="image" src="https://github.com/user-attachments/assets/da3729f1-270b-431c-a031-8d5271126c08" />
 
 ---
 <img width="1476" height="697" alt="image" src="https://github.com/user-attachments/assets/906572eb-ade1-4ca1-b137-de83f4e1670a" />
@@ -93,6 +98,8 @@ The platform uses Artificial Intelligence to automate routine activities and pro
 - User-controlled permissions
 
 ---
+<img width="1477" height="702" alt="image" src="https://github.com/user-attachments/assets/86226b74-8144-4a70-ae0c-0a53b0bb1eb3" />
+
 
 ## Technology Stack
 
