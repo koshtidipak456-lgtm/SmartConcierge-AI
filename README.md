@@ -3,7 +3,7 @@ SmartConcierge AI is an intelligent personal concierge assistant that helps user
 
 # SmartConcierge AI
 
-## Overview
+## Overview 
 
 SmartConcierge AI is a privacy-first intelligent personal concierge assistant designed to simplify everyday life. The platform helps users manage tasks, schedules, reminders, finances, notes, goals, and daily activities through a single AI-powered interface.
 
