@@ -1,0 +1,7 @@
+# Ignore local Google Cloud CLI installers and temporary files
+gcloud-install/
+gcloud-sdk-install/
+gcloud.zip
+gcloud-sdk.zip
+auth_output.txt
+deploy_output.txt
